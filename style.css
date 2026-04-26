@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap");
+
 :root {
   color-scheme: light;
   --bg: #ccc;
@@ -21,7 +23,7 @@ body {
   justify-content: center;
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Courier New', Courier, monospace;
+    font-family: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Menlo, Consolas, monospace;
   line-height: 1.7;
 }
 
