@@ -214,3 +214,18 @@ footer {
     opacity: 0;
   }
 }
+
+@media (max-width: 760px) {
+    .page {
+    margin: 24px auto;
+    }
+
+    .card {
+    padding: 22px;
+    }
+
+    header,
+    main {
+    grid-template-columns: 1fr;
+    }
+}
