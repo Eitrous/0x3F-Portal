@@ -21,9 +21,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg);
+  background-color: var(--card);
   color: var(--text);
-    font-family: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Menlo, Consolas, monospace;
+  font-family: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Menlo, Consolas, monospace;
   line-height: 1.7;
 }
 
@@ -31,12 +31,13 @@ body {
   width: min(920px, calc(100% - 32px));
   margin: 32px 42px 32px 42px;
   position: relative;
+  border: 1px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
 }
 
 .terminal-bar {
   background: var(--cmd-bg);
   color: var(--cmd-text);
-  border-radius: 12px 12px 0 0;
   padding: 14px 18px;
   letter-spacing: 0.03em;
   font-size: 20px;
@@ -61,8 +62,6 @@ body {
 
 .card {
   background: var(--card);
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   padding: 32px;
 }
 
@@ -140,7 +139,6 @@ h2::after {
     margin-bottom: 12px;
     background: var(--card-bgbg);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
-
 }
 
 .project:hover {
@@ -169,29 +167,16 @@ h2::after {
   position: relative;
   display: inline-block;
   padding: 8px 10px;
-  border-bottom: 2px solid var(--accent);
+  border: 1px solid var(--accent);
   overflow: hidden;
   z-index: 0;
   transition: color 0.1s ease;
-}
-
-.link-button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.15s ease;
-  z-index: -1;
-}
-
-.link-button:hover::before {
-  transform: scaleY(1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .link-button:hover {
-  color: var(--cmd-text);
+  transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--border);
 }
 
 a {
