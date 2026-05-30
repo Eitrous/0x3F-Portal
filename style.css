@@ -52,6 +52,7 @@ body {
 
 .cmd-prompt {
   display: inline;
+  white-space: nowrap;
 }
 
 .cmd-input {

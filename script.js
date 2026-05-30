@@ -6,72 +6,81 @@ const availableCommands = ["cat", "cd", "ls", "help"];
 
 const views = {
   "cat profile": `
-      <header>
-        <div>
-          <div class="title">0x3F</div>
-          <p class="subtitle">Eitrous's Personal Portal</p>
-        </div>
-      </header>
+        <header>
+          <div>
+            <div class="title">0x3F</div>
+            <!-- <pre class="ascii-title">
+  ██████╗ ██╗  ██╗██████╗ ███████╗
+ ██╔═████╗╚██╗██╔╝╚════██╗██╔════╝
+ ██║██╔██║ ╚███╔╝  █████╔╝█████╗  
+ ████╔╝██║ ██╔██╗  ╚═══██╗██╔══╝  
+ ╚██████╔╝██╔╝ ██╗██████╔╝██║     
+  ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝     
+              </pre> -->
+            <p class="subtitle">Eitrous's Personal Portal</p>
+          </div>
+        </header>
 
-      <main class="profile">
-        <div>
-          <section>
-            <h2>About</h2>
-            <p>这是我的个人主页</p>
-          </section>
+        <main class="profile">
+          <div>
+            <section>
+              <h2>About</h2>
+              <p>这是我的个人主页</p>
+            </section>
 
-          <section>
-            <h2>Projects</h2>
-            <a
-              class="project"
-              href="https://fumo.touhouspots.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="project-title">01 / Fumo Spots</div>
-              <div class="project-desc">Share your Fumo posts.</div>
-            </a>
-          </section>
-        </div>
-
-        <div>
-          <section>
-            <h2>Profile</h2>
-            <table class="profile-table">
-              <tr>
-                <td>Name</td>
-                <td>
-                  <div>Eitrous \</div>
-                  <div>GSTRenko \</div>
-                  <div>汎用合成型宇佐見05</div>
-                </td>
-              </tr>
-              <tr>
-                <td>University</td>
-                <td>GSAI</td>
-              </tr>
-              <tr>
-                <td>Location</td>
-                <td>Gensokyo</td>
-              </tr>
-            </table>
-          </section>
-
-          <section>
-            <h2>Links</h2>
-            <div class="links">
-              <a class="link-button" href="https://blog.0x3f.io">Weblog</a>
-              <a class="link-button" href="mailto:me@0x3f.io">Email</a>
-              <a class="link-button" href="https://github.com/Eitrous"
-                >GitHub</a
+            <section>
+              <h2>Projects</h2>
+              <a
+                class="project"
+                href="https://fumo.touhouspots.com"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-            </div>
-          </section>
-        </div>
+                <div class="project-title">01 / Fumo Spots</div>
+                <div class="project-desc">Share your Fumo posts.</div>
+              </a>
+            </section>
+          </div>
+
+          <div>
+            <section>
+              <h2>Profile</h2>
+              <table class="profile-table">
+                <tr>
+                  <td>Name</td>
+                  <td>
+                    <div>Eitrous \</div>
+                    <div>GSTRenko \</div>
+                    <div>汎用合成型宇佐見05</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>University</td>
+                  <td>GSAI</td>
+                </tr>
+                <tr>
+                  <td>Location</td>
+                  <td>Gensokyo</td>
+                </tr>
+              </table>
+            </section>
+
+            <section>
+              <h2>Links</h2>
+              <div class="links">
+                <a class="link-button" href="https://blog.0x3f.io">Weblog</a>
+                <a class="link-button" href="mailto:me@0x3f.io">Email</a>
+                <a class="link-button" href="https://github.com/Eitrous"
+                  >GitHub</a
+                >
+              </div>
+            </section>
+          </div>
         </main>
-      <footer>
-        <span>Last update: 2026-05-30</span>
-      </footer>
+        <footer>
+          <span>Last update: 2026-05-31</span>
+          <svg class="barcode" id="barcode"></svg>
+        </footer>
 `,
 
   ls: `
@@ -121,21 +130,46 @@ const views = {
 `,
 };
 
-JsBarcode("#barcode", "0x3f.io", {
+function renderBarcode() {
+  const barcodeEl = document.querySelector("#barcode");
+  // 必须确保当前 DOM 里有这个元素再进行渲染，否则 JsBarcode 会报错
+  if (barcodeEl) {
+    JsBarcode("#barcode", "0x3f.io", {
       format: "CODE128",
       lineColor: "#000",
       background: "transparent",
-      width: 3,
-      height: 32,
+      width: 2,
+      height: 20,
       displayValue: false,
       padding: 0,
       margin: 0,
-});
+    });
+  }
+}
+
+renderBarcode();
 
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     e.preventDefault();
-    form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); // 手动触发提交
+    form.dispatchEvent(
+      new Event("submit", { cancelable: true, bubbles: true }),
+    );
+  }
+});
+
+form.addEventListener("click", function () {
+  input.focus(); // 聚焦到输入框
+  
+  // 对于 contenteditable 元素，聚焦后光标可能会跑到最前面，我们需要强制把它移到文字最后
+  if (typeof window.getSelection !== "undefined" && typeof document.createRange !== "undefined") {
+    const range = document.createRange();
+    range.selectNodeContents(input);
+    range.collapse(false); // false 表示折叠到文本末尾
+    
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
   }
 });
 
@@ -157,6 +191,9 @@ form.addEventListener("submit", function (event) {
   //   </section>
   //   `;
   // }
+  if (command === "") {
+    return;
+  }
 
   if (!availableCommands.includes(command)) {
     output.innerHTML = `
@@ -216,4 +253,5 @@ form.addEventListener("submit", function (event) {
     }
   }
   input.textContent = "";
+  renderBarcode();
 });
