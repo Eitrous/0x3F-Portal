@@ -47,13 +47,11 @@ body {
   letter-spacing: 0.03em;
   font-size: 20px;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  line-height: 1.5;
 }
 
 .cmd-prompt {
-  word-break: break-all;
+  display: inline;
 }
 
 .cmd-input {
@@ -64,7 +62,9 @@ body {
   font: inherit;
   caret-shape: block;
   caret-color: var(--cmd-text);
-  flex: 1 1 150px;
+  display: inline;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .cmd-meta {
@@ -81,7 +81,7 @@ body {
   outline: none;
   color: var(--cmd-text);
   font: inherit;
-  width: min(100%, 400px);
+  width: 100%;
   caret-shape: block;
   caret-color: var(--cmd-text);
 }
@@ -150,6 +150,11 @@ body {
 .subtitle {
   color: var(--muted);
   margin-top: 0px;
+}
+
+.barcode {
+  align-items: baseline;
+  height: 100%;
 }
 
 header {
@@ -275,7 +280,7 @@ footer {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 740px) {
   body {
     margin: 0;
     display: block;
@@ -300,10 +305,15 @@ footer {
     flex: 1;
     border-radius: 0;
     padding: 22px;
+    padding-top: 0px;
     padding-bottom: calc(22px + env(safe-area-inset-bottom));
   }
 
-  main {
+  main.profile {
     grid-template-columns: 1fr;
+  }
+
+  .barcode {
+    display: none;
   }
 }

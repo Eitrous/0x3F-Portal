@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="assets/icon/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <title>0x3F | Eitrous's Personal Portal</title>
   </head>
   <body>
@@ -15,22 +16,25 @@
             </div> -->
       <form class="terminal-bar" id="cmd-form">
         <label for="cmd-input" class="cmd-prompt">
-        <span class="cmd-meta">guest@0x3f-io</span>:<span class="cmd-route">/home/eitrous</span>$
+          <span class="cmd-meta">guest@0x3f-io</span>:<span class="cmd-route"
+            >/home/eitrous</span
+          >$
         </label>
-        <s pan
+        <span
           id="cmd-input"
           class="cmd-input"
-          value="cat profile"
-          autocomplete="off"
+          contenteditable="true"
+          role="textbox"
           spellcheck="false"
-        />
+          >cat profile</span
+        >
       </form>
 
-      <div class="card" id="cmd-output">   
-          <header>
-            <div>
-              <div class="title">0x3F</div>
-              <!-- <pre class="ascii-title">
+      <div class="card" id="cmd-output">
+        <header>
+          <div>
+            <div class="title">0x3F</div>
+            <!-- <pre class="ascii-title">
   ██████╗ ██╗  ██╗██████╗ ███████╗
  ██╔═████╗╚██╗██╔╝╚════██╗██╔════╝
  ██║██╔██║ ╚███╔╝  █████╔╝█████╗  
@@ -38,67 +42,70 @@
  ╚██████╔╝██╔╝ ██╗██████╔╝██║     
   ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝     
               </pre> -->
-              <p class="subtitle">Eitrous's Personal Portal</p>
-            </div>
-          </header>
+            <p class="subtitle">Eitrous's Personal Portal</p>
+          </div>
+          <svg class="barcode" id="barcode"></svg>
+        </header>
 
-          <main class="profile">
-            <div>
-              <section>
-                <h2>About</h2>
-                <p>这是我的个人主页</p>
-              </section>
+        <main class="profile">
+          <div>
+            <section>
+              <h2>About</h2>
+              <p>这是我的个人主页</p>
+            </section>
 
-              <section>
-                <h2>Projects</h2>
-                <a
-                  class="project"
-                  href="https://fumo.touhouspots.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <section>
+              <h2>Projects</h2>
+              <a
+                class="project"
+                href="https://fumo.touhouspots.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-title">01 / Fumo Spots</div>
+                <div class="project-desc">Share your Fumo posts.</div>
+              </a>
+            </section>
+          </div>
+
+          <div>
+            <section>
+              <h2>Profile</h2>
+              <table class="profile-table">
+                <tr>
+                  <td>Name</td>
+                  <td>
+                    <div>Eitrous \</div>
+                    <div>GSTRenko \</div>
+                    <div>汎用合成型宇佐見05</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>University</td>
+                  <td>GSAI</td>
+                </tr>
+                <tr>
+                  <td>Location</td>
+                  <td>Gensokyo</td>
+                </tr>
+              </table>
+            </section>
+
+            <section>
+              <h2>Links</h2>
+              <div class="links">
+                <a class="link-button" href="https://blog.0x3f.io">Weblog</a>
+                <a class="link-button" href="mailto:me@0x3f.io">Email</a>
+                <a class="link-button" href="https://github.com/Eitrous"
+                  >GitHub</a
                 >
-                  <div class="project-title">01 / Fumo Spots</div>
-                  <div class="project-desc">Share your Fumo posts.</div>
-                </a>
-              </section>
-            </div>
-
-            <div>
-              <section>
-                <h2>Profile</h2>
-                <table class="profile-table">
-                  <tr>
-                    <td>Name</td>
-                    <td>
-                      <div>Eitrous \</div>
-                      <div>GSTRenko \</div>
-                      <div>汎用合成型宇佐見05</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>University</td>
-                    <td>GSAI</td>
-                  </tr>
-                  <tr>
-                    <td>Location</td>
-                    <td>Gensokyo</td>
-                  </tr>
-                </table>
-              </section>
-
-              <section>
-                <h2>Links</h2>
-                <div class="links">
-                  <a class="link-button" href="https://blog.0x3f.io">Weblog</a>
-                  <a class="link-button" href="mailto:me@0x3f.io">Email</a>
-                  <a class="link-button" href="https://github.com/Eitrous">GitHub</a>
-                </div>
-              </section>
-            </div>
-            </main>
-          <footer>
-            <span>Last update: 2026-05-30</span>
-          </footer>
+              </div>
+            </section>
+          </div>
+        </main>
+        <footer>
+          <span>Last update: 2026-05-31</span>
+        </footer>
       </div>
     </div>
   </body>

@@ -121,10 +121,28 @@ const views = {
 `,
 };
 
+JsBarcode("#barcode", "0x3f.io", {
+      format: "CODE128",
+      lineColor: "#000",
+      background: "transparent",
+      width: 3,
+      height: 32,
+      displayValue: false,
+      padding: 0,
+      margin: 0,
+});
+
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); // 手动触发提交
+  }
+});
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const inputArr = input.value.trim().toLowerCase().split(" ");
+  const inputArr = input.textContent.trim().toLowerCase().split(" ");
   const command = inputArr[0];
   const args = inputArr.slice(1);
 
@@ -144,11 +162,10 @@ form.addEventListener("submit", function (event) {
     output.innerHTML = `
     <section class="output">
         <h2>Error</h2>
-        <p>${command}: permission denied</p>
+        <p>${command}: Permission denied</p>
         <p>Type "help" to see other available commands.</p>
     </section>
     `;
-    return;
   }
 
   if (command === "cat") {
@@ -198,5 +215,5 @@ form.addEventListener("submit", function (event) {
       `;
     }
   }
-  input.value = "";
+  input.textContent = "";
 });
