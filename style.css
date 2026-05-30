@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Orbitron:wght@400..900&display=swap');
 
 :root {
   color-scheme: light;
@@ -29,9 +30,13 @@ body {
 
 .page {
   width: min(920px, calc(100% - 32px));
-  margin: 32px 42px 32px 42px;
+  margin: 0px 42px 0px 42px;
   position: relative;
   border: 1px solid var(--border);
+  transition: box-shadow 0.15s ease;
+}
+
+.page:hover {
   box-shadow: 4px 4px 0 var(--border);
 }
 
@@ -41,6 +46,25 @@ body {
   padding: 14px 18px;
   letter-spacing: 0.03em;
   font-size: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cmd-prompt {
+  word-break: break-all;
+}
+
+.cmd-input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--cmd-text);
+  font: inherit;
+  caret-shape: block;
+  caret-color: var(--cmd-text);
+  flex: 1 1 150px;
 }
 
 .cmd-meta {
@@ -51,41 +75,90 @@ body {
   color: var(--cmd-text-route);
 }
 
-.cursor {
-  display: inline-block;
-  width: 9px;
-  height: 1em;
-  background: var(--cmd-text);
-  vertical-align: -2px;
-  animation: blink 1.1s steps(1) infinite;
+.cmd-input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--cmd-text);
+  font: inherit;
+  width: min(100%, 400px);
+  caret-shape: block;
+  caret-color: var(--cmd-text);
+}
+
+.cmd-list {
+  color: var(--accent);
+}
+
+.output {
+  margin-top: 36px;
+}
+
+.help .cmd-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+
+.help p {
+  margin: 4px;
+}
+
+.ls .dir-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.ls p {
+  margin: 4px;
+}
+
+.dir {
+  color: var(--cmd-text-route);
+  font-weight: 600;
 }
 
 .card {
   background: var(--card);
   padding: 32px;
+  padding-top: 0px
 }
 
 .title {
   margin: 0;
-  font-size: clamp(3rem, 10vw, 4rem);
+  margin-top: 6px;
+  font-size: clamp(3rem, 16vw, 6rem);
   font-weight: 800;
+  font-family: "Orbitron", "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   line-height: 1;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
   color: var(--accent);
+  display: inline-block;
+  transform: scaleY(0.78);
+  transform-origin: center;
+}
+
+.ascii-title {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  white-space: pre;
+  line-height: 1;
+  letter-spacing: 0;
+  font-size: clamp(0.7rem, 1.5vw, 1.4rem);
 }
 
 .subtitle {
   color: var(--muted);
-  margin-top: 12px;
+  margin-top: 0px;
 }
 
 header {
   display: grid;
   grid-template-columns: 1fr auto;
-  border-bottom: 1px dashed var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-main {
+.profile {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 28px;
@@ -121,7 +194,7 @@ h2::after {
 
 .profile-table td {
   padding: 7px 0;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   vertical-align: top;
 }
 
@@ -187,7 +260,7 @@ a {
 footer {
   margin-top: 28px;
   padding-top: 18px;
-  border-top: 1px dashed var(--border);
+  border-top: 1px solid var(--border);
 
   font-size: 0.85em;
   display: flex;
