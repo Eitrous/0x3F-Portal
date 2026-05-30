@@ -49,8 +49,8 @@ const views = {
                 <tr>
                   <td>Name</td>
                   <td>
-                    <div>Eitrous \</div>
-                    <div>GSTRenko \</div>
+                    <div>Eitrous \\</div>
+                    <div>GSTRenko \\</div>
                     <div>汎用合成型宇佐見05</div>
                   </td>
                 </tr>
