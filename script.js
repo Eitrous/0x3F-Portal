@@ -87,6 +87,7 @@ const views = {
     <section class="output ls">
     <h2>Directory</h2>
     <div class="dir-list">
+    <p>keys</p>
     <p>links</p>
     <p>profile</p>
     <p>projects</p>
@@ -113,6 +114,22 @@ const views = {
         <a class="link-button" href="mailto:me@0x3f.io">Email</a>
         <a class="link-button" href="https://github.com/Eitrous">GitHub</a>
     </div>
+    </section>
+`,
+
+  "cat keys": `
+    <section class="output">
+    <h2>Keys</h2>
+    <details>
+    <summary>SSH</summary>
+    <div class="key-desc">
+    <p>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+p+ELjvkcGyE5dzeV8jonHya/+6ws6L7f8ASDxN/HU @eitrous</p>
+    or
+    <p>
+    <code>curl https://ssh-key.0x3f.io/ >> ~/.ssh/authorized_keys</code>
+    </p>
+    </div>
+    </details>
     </section>
 `,
 

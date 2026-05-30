@@ -3,7 +3,6 @@
 
 :root {
   color-scheme: light;
-  --bg: #ccc;
   --card: #eee;
   --text: #333;
   --muted: #555;
@@ -13,7 +12,6 @@
   --cmd-text-meta: #84cd94;
   --cmd-text-route: #4557ff;
   --border: #333;
-  --card-bg: #ddd:
 }
 
 body {
@@ -167,7 +165,7 @@ header {
 .profile {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
+  gap: 64px;
   margin-top: 28px;
 }
 
@@ -216,7 +214,7 @@ h2::after {
     border: 1px solid var(--border);
     padding: 12px;
     margin-bottom: 12px;
-    background: var(--card-bgbg);
+    background: var(--card);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -237,14 +235,15 @@ h2::after {
 }
 
 .links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 24px;
 }
 
 .link-button {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   padding: 8px 10px;
   border: 1px solid var(--accent);
   overflow: hidden;
@@ -256,6 +255,21 @@ h2::after {
 .link-button:hover {
   transform: translate(-2px, -2px);
     box-shadow: 4px 4px 0 var(--border);
+}
+
+.key-desc {
+  margin-left: 24px;
+}
+
+.key-desc p {
+  margin: 4px 0;
+}
+
+code {
+  background: var(--cmd-bg);
+  color: var(--cmd-text);
+  padding: 2px 4px;
+  font-size: 1em;
 }
 
 a {
