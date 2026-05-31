@@ -2,7 +2,9 @@ const form = document.querySelector("#cmd-form");
 const input = document.querySelector("#cmd-input");
 const output = document.querySelector("#cmd-output");
 
-const availableCommands = ["cat", "cd", "ls", "help"];
+
+const allCommands = ["cat", "cd", "ls", "help", "mkdir", "rm", "touch", "echo", "pwd"];
+const availableCommands = ["cat", "cd", "ls", "help", "echo", "pwd"];
 
 const views = {
   "cat profile": `
@@ -212,11 +214,19 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
-  if (!availableCommands.includes(command)) {
+  if (!allCommands.includes(command)) {
     output.innerHTML = `
     <section class="output">
         <h2>Error</h2>
-        <p>${command}: Permission denied</p>
+        <p>bash: ${command}: command not found</p>
+        <p>Type "help" to see available commands.</p>
+    </section>
+    `;
+  } else if (!availableCommands.includes(command)) {
+    output.innerHTML = `
+    <section class="output">
+        <h2>Error</h2>
+        <p>bash: ${command}: Permission denied</p>
         <p>Type "help" to see other available commands.</p>
     </section>
     `;
@@ -229,6 +239,13 @@ form.addEventListener("submit", function (event) {
       <section class="output">
           <h2>Error</h2>
           <p>Usage: cat [target]</p>
+      </section>
+      `;
+    } else if (target === "secret") {
+      output.innerHTML = `
+      <section class="output">
+          <h2>Error</h2>
+          <p>cat: secret: Is a directory</p>
       </section>
       `;
     } else if (views[`${command} ${target}`]) {
@@ -246,18 +263,21 @@ form.addEventListener("submit", function (event) {
   } else if (command === "help") {
     output.innerHTML = views.help;
   } else if (command === "cd") {
-    if (args.length !== 1) {
-      output.innerHTML = `
-      <section class="output">
-          <h2>Error</h2>
-          <p>Usage: cd [target]</p>
-      </section>
-      `;
+    if (args.length !== 1 || args[0] === "/home/eitrous" || args[0] === "/home/eitrous/" || args[0] === "~" || args[0] === ".") {
+      input.textContent = "";
+      return;
     } else if (args[0] === "secret") {
       output.innerHTML = `
       <section class="output">
           <h2>Error</h2>
           <p>cd: secret: Permission denied</p>
+      </section>
+      `;
+    } else if (args[0] === ".." || args[0].startsWith("/")) {
+      output.innerHTML = `
+      <section class="output">
+          <h2>Error</h2>
+          <p>bash: cd: ${args[0]}: Permission denied</p>
       </section>
       `;
     } else {
@@ -268,6 +288,21 @@ form.addEventListener("submit", function (event) {
       </section>
       `;
     }
+  } else if (command === "echo") {
+    if (args.length === 0) {
+      output.innerHTML = `<section class="output"><p></p></section>`;
+    } else if (args[1] && args[1].startsWith(">")) {
+      output.innerHTML = `
+      <section class="output">
+          <h2>Error</h2>
+          <p>bash: echo: Permission denied</p>
+      </section>
+      `;
+    } else {
+      output.innerHTML = `<section class="output"><p>${args.join(" ").replace(/^[ '"]+|[ '"]+$/g, '')}</p></section>`;
+    }
+  } else if (command === "pwd") {
+    output.innerHTML = `<section class="output"><p>/home/eitrous</p></section>`;
   }
   input.textContent = "";
   renderBarcode();
