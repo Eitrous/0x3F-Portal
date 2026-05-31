@@ -319,6 +319,7 @@ footer {
 
   .terminal-bar {
     border-radius: 0;
+    padding: 12px 8px;
   }
 
   .card {
