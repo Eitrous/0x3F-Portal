@@ -126,10 +126,17 @@ const views = {
     <summary>SSH</summary>
     <div class="key-desc">
     <p>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+p+ELjvkcGyE5dzeV8jonHya/+6ws6L7f8ASDxN/HU @eitrous</p>
-    or
+    <em>or</em>
     <p>
-    <code>curl https://ssh-key.0x3f.io/ >> ~/.ssh/authorized_keys</code>
+    <code>curl https://key.0x3f.io/ssh >> ~/.ssh/authorized_keys</code>
     </p>
+    </div>
+    </details>
+    <details>
+    <summary>PGP</summary>
+    <div class="key-desc">
+    <p>Fingerprint: 6D42 1000 130F 7C51 E552 311D 47D3 C9F8 64B1 0009</p>
+    <a href="https://key.0x3f.io/pgp" target="_blank" rel="noopener noreferrer">Download PGP Key</a>
     </div>
     </details>
     </section>

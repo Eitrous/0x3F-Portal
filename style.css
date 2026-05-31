@@ -4,8 +4,8 @@
 :root {
   color-scheme: light;
   --card: #eee;
-  --text: #333;
-  --muted: #555;
+  --text: #444;
+  --muted: #666;
   --accent: #222;
   --cmd-bg: #1f2522;
   --cmd-text: #d7d7d7;
@@ -263,13 +263,18 @@ h2::after {
 
 .key-desc p {
   margin: 4px 0;
+  word-break: break-all;
+}
+
+.key-desc a {
+  color: var(--accent);
 }
 
 code {
   background: var(--cmd-bg);
   color: var(--cmd-text);
   padding: 2px 4px;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 a {
